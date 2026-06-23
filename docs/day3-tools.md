@@ -49,7 +49,9 @@ Windows VM is configured with core cybersecurity tools and ready for networking 
 
 ## Next Steps
 
-* Obtain Windows Server ISO
-* Create Domain Controller VM
-* Configure Active Directory
-* Create domain users and groups
+* Learn Linux administration basics
+* Create Linux users and groups
+* Practice Linux networking and permissions
+* Research Windows Server options for Apple Silicon
+* Install Windows Server and Active Directory
+* Join Windows 11 client to the domain
