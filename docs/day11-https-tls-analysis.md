@@ -1,4 +1,3 @@
-````md
 # Day 11 – HTTPS and TLS Analysis with Wireshark
 
 ## Objective
@@ -199,4 +198,3 @@ If certificate validation fails, the browser warns the user that the connection 
 # Conclusion
 
 This lab demonstrated how HTTPS secures web communication through TLS encryption. By comparing HTTP and HTTPS traffic, inspecting the TLS handshake, and examining a website certificate, I gained a practical understanding of how modern web browsers establish secure connections and protect data transmitted over the network.
-````

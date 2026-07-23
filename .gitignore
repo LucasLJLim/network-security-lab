@@ -1,0 +1,34 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~
+.directory
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Secrets and keys (never commit these)
+*.pem
+*.key
+*.ppk
+*.pfx
+id_rsa
+id_rsa.*
+id_ed25519
+id_ed25519.*
+.env
+*.rdp
+credentials*

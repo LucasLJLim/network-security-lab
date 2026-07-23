@@ -152,31 +152,31 @@ This demonstrated that HTTP traffic is transmitted in plaintext.
 
 ### HTTP Server Running
 
-![](screenshots/day9/01_http_server_running.png)
+![](../screenshots/day9/01_http_server_running.png)
 
 ---
 
 ### Nmap Service Detection
 
-![](screenshots/day9/02_nmap_http_service_detection.png)
+![](../screenshots/day9/02_nmap_http_service_detection.png)
 
 ---
 
 ### HTTP GET Request
 
-![](screenshots/day9/03_http_get_request.png)
+![](../screenshots/day9/03_http_get_request.png)
 
 ---
 
 ### HTTP 200 OK Response
 
-![](screenshots/day9/04_http_200_response_external.png)
+![](../screenshots/day9/04_http_200_response_external.png)
 
 ---
 
 ### HTTP 304 Not Modified Response
 
-![](screenshots/day9/05_http_304_not_modified.png)
+![](../screenshots/day9/05_http_304_not_modified.png)
 
 > While testing, the browser initially returned a **304 Not Modified** response due to caching. Opening the webpage in an Incognito window forced a fresh request and produced a new **200 OK** response.
 
@@ -184,13 +184,13 @@ This demonstrated that HTTP traffic is transmitted in plaintext.
 
 ### HTTP 200 OK Response from Local Server
 
-![](screenshots/day9/06_http_200_response_success.png)
+![](../screenshots/day9/06_http_200_response_success.png)
 
 ---
 
 ### Follow TCP Stream
 
-![](screenshots/day9/07_http_follow_tcp_stream.png)
+![](../screenshots/day9/07_http_follow_tcp_stream.png)
 
 ---
 

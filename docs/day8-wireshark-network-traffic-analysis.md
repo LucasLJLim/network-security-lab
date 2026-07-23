@@ -19,7 +19,7 @@ Learn how to capture and analyse network traffic using Wireshark. This lab focus
 
 **Screenshot:**
 
-![Starting Packet Capture](screenshots/day8/01-starting-packet-capture.png)
+![Starting Packet Capture](../screenshots/day8/01-starting-packet-capture.png)
 
 ---
 
@@ -40,7 +40,7 @@ Learned that ICMP is primarily used for connectivity testing and network trouble
 
 **Screenshot:**
 
-![ICMP Packet Capture](screenshots/day8/02-icmp-packet-capture.png)
+![ICMP Packet Capture](../screenshots/day8/02-icmp-packet-capture.png)
 
 ---
 
@@ -66,9 +66,9 @@ Learned that before communicating with a website, the client must first resolve 
 
 **Screenshots:**
 
-![DNS Query Request](screenshots/day8/03-dns-query-request.png)
+![DNS Query Request](../screenshots/day8/03-dns-query-request.png)
 
-![DNS Query Response](screenshots/day8/04-dns-query-response.png)
+![DNS Query Response](../screenshots/day8/04-dns-query-response.png)
 
 ---
 
@@ -92,9 +92,9 @@ Learned that TCP establishes a reliable connection before transmitting applicati
 
 **Screenshots:**
 
-![TCP Three-Way Handshake](screenshots/day8/05-tcp-three-way-handshake.png)
+![TCP Three-Way Handshake](../screenshots/day8/05-tcp-three-way-handshake.png)
 
-![TCP Connection Termination](screenshots/day8/07-tcp-connection-termination.png)
+![TCP Connection Termination](../screenshots/day8/07-tcp-connection-termination.png)
 
 ---
 
@@ -109,7 +109,7 @@ Learned that although packet headers remain visible, the application payload is 
 
 **Screenshot:**
 
-![TLS Client Hello](screenshots/day8/06-tls-client-hello.png)
+![TLS Client Hello](../screenshots/day8/06-tls-client-hello.png)
 
 ---
 
@@ -127,7 +127,7 @@ This demonstrated how individual packets can be reassembled into a complete comm
 
 **Screenshot:**
 
-![Follow TCP Stream](screenshots/day8/08-follow-tcp-stream.png)
+![Follow TCP Stream](../screenshots/day8/08-follow-tcp-stream.png)
 
 ---
 
