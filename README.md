@@ -38,7 +38,7 @@ Wireshark, Nmap, UFW, OpenSSH, Python HTTP server, Server Manager, Active Direct
 | [7](docs/day7-nmap-scanning.md) | Nmap Scanning Lab | Network reconnaissance, port scanning |
 | [8](docs/day8-wireshark-network-traffic-analysis.md) | Wireshark Network Traffic Analysis | ICMP, DNS, TCP packet analysis |
 | [9](docs/day9-http-traffic-analysis.md) | HTTP Traffic Analysis | Cleartext protocol inspection |
-| [10](docs/day10-http-server-and-web-traffic-analysis.md) | Linux Firewall and Service Hardening | UFW rules, access control |
+| [10](docs/day10-linux-firewall-hardening.md) | Linux Firewall and Service Hardening | UFW rules, access control |
 | [11](docs/day11-https-tls-analysis.md) | HTTPS and TLS Analysis | TLS handshake, certificates |
 | [12](docs/day12-ssh-remote-administration.md) | Secure Remote Access with SSH | Encrypted remote administration |
 | [13](docs/day13-ssh-key-authentication.md) | SSH Key-Based Authentication | Public-key cryptography |
