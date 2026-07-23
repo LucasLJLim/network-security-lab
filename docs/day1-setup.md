@@ -16,10 +16,20 @@ Set up a Windows 11 ARM64 virtual machine using UTM on macOS.
 
 1. Downloaded the Windows 11 ARM64 ISO from Microsoft.
 2. Created a new Windows virtual machine in UTM.
+
+![New Windows virtual machine created in UTM](../screenshots/day1/01-utm-created-vm.png)
+
 3. Configured memory, CPU, and storage allocations.
-4. Started the virtual machine and attempted installation.
-5. Troubleshot boot issues.
-6. Installed Windows 11 Pro successfully.
+
+![Memory and CPU allocation configured](../screenshots/day1/02-configured-memory-and-cpu.png)
+
+4. Configured a shared directory between host and guest.
+
+![Shared directory configured](../screenshots/day1/03-configured-shared-directory.png)
+
+5. Started the virtual machine and attempted installation.
+6. Troubleshot boot issues.
+7. Installed Windows 11 Pro successfully.
 
 ## Problems Encountered
 
@@ -27,26 +37,27 @@ Set up a Windows 11 ARM64 virtual machine using UTM on macOS.
 
 The virtual machine booted into the EFI shell instead of the Windows installer.
 
+![Boot failure dropping into the EFI shell](../screenshots/day1/04-boot-failure-efi-shell.png)
+
 ## Resolution
 
 The issue occurred because an x64 Windows ISO was initially used. The ISO was replaced with the correct Windows 11 ARM64 version and the VM was recreated.
+
+Working through the UEFI boot manager to identify the problem:
+
+![Boot manager troubleshooting](../screenshots/day1/05-boot-manager-troubleshooting.png)
+
+![Boot manager troubleshooting, continued](../screenshots/day1/06-boot-manager-troubleshooting-2.png)
+
+With the correct ARM64 ISO attached, the Windows installer loaded:
+
+![Windows 11 installation screen](../screenshots/day1/07-windows-11-installation-screen.png)
 
 ## Result
 
 Windows 11 ARM64 installed successfully and booted to the desktop environment.
 
-## Evidence
-
-Screenshots stored in the `/screenshots` directory:
-
-* 01-utm-created-vm.png
-* 02-configured-memory-and-cpu.png
-* 03-configured-shared-directory.png
-* 04-boot-failure-efi-shell.png
-* 05-boot-manager-troubleshooting.png
-* 06-boot-manager-troubleshooting-2.png
-* 07-windows-11-installation-screen.png
-* 08-successful-windows-11-installation.png
+![Windows 11 installed successfully and booted to desktop](../screenshots/day1/08-successful-windows-11-installation.png)
 
 ## Next Steps
 

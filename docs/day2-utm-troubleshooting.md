@@ -27,22 +27,34 @@ Log file referenced:
 
 C:\Windows\System32\Logfiles\Srt\SrtTrail.txt
 
+![Startup repair failure message](../screenshots/day2/startup-repair-failure.png)
+
 ---
 
 ## Troubleshooting Process
 
 1. Entered Windows Recovery Environment.
-2. Opened:
-   - Troubleshoot
-   - Advanced Options
-3. Attempted:
-   - Quick Machine Recovery
-   - System Restore
+
+![Windows Recovery Environment options](../screenshots/day2/recovery-options-screen.png)
+
+2. Opened Troubleshoot, then Advanced Options.
+
+![Advanced recovery options](../screenshots/day2/advanced-recovery-options.png)
+
+3. Attempted Quick Machine Recovery, then System Restore.
 4. System Restore was unavailable because no restore points had been configured.
-5. Opened:
-   - Startup Settings
+
+![System Restore unavailable, no restore points](../screenshots/day2/system-restore-no-restore-points.png)
+
+5. Opened Startup Settings.
 6. Restarted into Safe Mode.
+
+![Safe Mode login screen](../screenshots/day2/safe-mode-login-screen.png)
+
 7. Successfully logged into Windows in Safe Mode.
+
+![Safe Mode desktop reached](../screenshots/day2/safe-mode-desktop.png)
+
 8. Performed a normal restart.
 
 ---
@@ -50,6 +62,8 @@ C:\Windows\System32\Logfiles\Srt\SrtTrail.txt
 ## Resolution
 
 After booting into Safe Mode and restarting normally, Windows successfully loaded without entering Automatic Repair.
+
+![Successful boot after recovery](../screenshots/day2/successful-boot-after-recovery.png)
 
 ---
 
@@ -76,18 +90,6 @@ To avoid similar startup and recovery issues in the future:
    - Putting the host computer to sleep during Windows updates or shutdown
 
 Following these steps helps prevent filesystem corruption and unexpected startup repair issues.
-
----
-
-## Screenshots
-
-1. startup-repair-failure.png
-2. recovery-options-screen.png
-3. advanced-recovery-options.png
-4. system-restore-no-restore-points.png
-5. safe-mode-login-screen.png
-6. safe-mode-desktop.png
-7. successful-boot-after-recovery.png
 
 ---
 

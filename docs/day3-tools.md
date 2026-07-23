@@ -11,37 +11,39 @@ Prepare the Windows 11 VM for cybersecurity learning, networking analysis, and f
 Purpose:
 Version control and GitHub integration.
 
+![Git installed and verified](../screenshots/day3/git-installed.png)
+
 ### Python
 
 Purpose:
 Scripting, automation, and cybersecurity tooling.
+
+![Python installed and verified](../screenshots/day3/python-installed.png)
 
 ### Visual Studio Code
 
 Purpose:
 Code editing and project development.
 
+![Visual Studio Code installed and verified](../screenshots/day3/vscode-installed.png)
+
 ### Wireshark
 
 Purpose:
 Network traffic capture and analysis.
+
+![Wireshark installed and verified](../screenshots/day3/wireshark-installed.png)
 
 ### Nmap
 
 Purpose:
 Network discovery and port scanning.
 
+![Nmap installed and verified](../screenshots/day3/nmap-installed.png)
+
 ## Verification
 
 Successfully launched all applications and verified installations.
-
-## Screenshots
-
-* git-installed.png
-* python-installed.png
-* vscode-installed.png
-* wireshark-installed.png
-* nmap-installed.png
 
 ## Result
 
