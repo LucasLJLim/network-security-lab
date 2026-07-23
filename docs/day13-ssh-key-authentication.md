@@ -8,12 +8,13 @@ Learn how SSH key-based authentication works by generating an SSH key pair on a 
 
 ## Environment
 
-- Host OS: Windows 11
-- Virtual Machine: Ubuntu Server 24.04 LTS
-- Hypervisor: VirtualBox
-- Client: OpenSSH for Windows
-- Server: OpenSSH Server
-- Network: Internal Virtual Network
+- Host: MacBook (Apple Silicon), macOS
+- Hypervisor: UTM
+- Client VM: Windows 11 ARM64
+- Server VM: Ubuntu Server 26.04 LTS
+- Client software: OpenSSH for Windows
+- Server software: OpenSSH Server
+- Network: UTM shared network, `192.168.64.0/24`
 
 ---
 

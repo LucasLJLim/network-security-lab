@@ -15,14 +15,15 @@ Learn how Secure Shell (SSH) provides encrypted remote administration by:
 ## Environment
 
 **Host Machine**
-- Windows 11
+- MacBook (Apple Silicon), macOS
+- Hypervisor: UTM
 
-**Virtual Machine**
-- Ubuntu Server 24.04 LTS
+**Virtual Machines**
+- Windows 11 ARM64 (client)
+- Ubuntu Server 26.04 LTS (server)
 
 **Network**
-- UTM Virtual Machine
-- Bridged Network
+- UTM shared network, `192.168.64.0/24`
 - Ubuntu IP: `192.168.64.4`
 
 **Tools Used**
