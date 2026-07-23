@@ -41,6 +41,8 @@ Example:
 ssh lucas@192.168.64.4
 ```
 
+![Verified existing SSH password-based connection to the Ubuntu server](../screenshots/day13/Day13_01_Existing_SSH_Connection.png)
+
 ---
 
 ### 2. Generated an SSH key pair
@@ -65,6 +67,10 @@ id_ed25519.pub
 - `id_ed25519` → Private key (kept secret)
 - `id_ed25519.pub` → Public key (copied to the server)
 
+![Generated an Ed25519 SSH public/private key pair using ssh-keygen](../screenshots/day13/Day13_02_SSH_Key_Pair_Generated.png)
+
+![Displayed the generated public key before copying it to the server](../screenshots/day13/Day13_03_Public_Key_Displayed.png)
+
 ---
 
 ### 3. Created the .ssh directory
@@ -75,6 +81,8 @@ On the Ubuntu server:
 mkdir -p ~/.ssh
 chmod 700 ~/.ssh
 ```
+
+![Created the ~/.ssh directory on the Ubuntu server](../screenshots/day13/Day13_04_SSH_Directory_Created.png)
 
 ---
 
@@ -96,6 +104,8 @@ into the file.
 
 Saved the file.
 
+![Created the authorized_keys file and added the public key](../screenshots/day13/Day13_05_Authorized_Keys_File_Created.png)
+
 ---
 
 ### 5. Applied correct permissions
@@ -105,6 +115,10 @@ Configured secure permissions:
 ```bash
 chmod 600 ~/.ssh/authorized_keys
 ```
+
+![Applied secure permissions to the .ssh directory and authorized_keys file](../screenshots/day13/Day13_06_SSH_Permissions_Configured.png)
+
+![Restarted the OpenSSH service and verified it was running correctly](../screenshots/day13/Day13_07_SSH_Service_Restarted.png)
 
 ---
 
@@ -117,6 +131,10 @@ ssh lucas@192.168.64.4
 ```
 
 The server authenticated using the SSH key instead of prompting for a password.
+
+![Successfully logged into the Ubuntu server using SSH key authentication](../screenshots/day13/Day13_08_SSH_Key_Login_Test.png)
+
+![Verified key-based authentication by executing a test command over SSH](../screenshots/day13/Day13_09_SSH_Key_Authentication_Verified.png)
 
 ---
 
@@ -157,81 +175,31 @@ Observed:
 
 After the key exchange, all SSH payload data became encrypted and unreadable in Wireshark.
 
----
+![Began capturing network traffic before initiating the SSH connection](../screenshots/day13/Day13_10_Wireshark_Capture_Started.png)
 
-## Screenshots
+![Full packet capture before applying any display filters](../screenshots/day13/Day13_11_Wireshark_Capture_Before_Filter.png)
 
-### SSH Key Authentication Setup
+![Applied the ssh display filter to isolate SSH traffic](../screenshots/day13/Day13_12_SSH_Filter_Applied.png)
 
-1. `Day13_01_Existing_SSH_Connection.png`
-   - Verified existing SSH password-based connection to the Ubuntu server.
+![Continued viewing filtered SSH packets](../screenshots/day13/Day13_13_SSH_Filter_Applied_2.png)
 
-2. `Day13_02_SSH_Key_Pair_Generated.png`
-   - Generated an Ed25519 SSH public/private key pair using `ssh-keygen`.
+![The complete filtered SSH communication](../screenshots/day13/Day13_14_SSH_Filter_Applied_3.png)
 
-3. `Day13_03_Public_Key_Displayed.png`
-   - Displayed the generated public key before copying it to the server.
+![SSH protocol version exchange between client and server](../screenshots/day13/Day13_15_SSH_Protocol_Version_Exchange.png)
 
-4. `Day13_04_SSH_Directory_Created.png`
-   - Created the `~/.ssh` directory on the Ubuntu server.
+![SSH Key Exchange Initialization packet](../screenshots/day13/Day13_16_SSH_Key_Exchange_Init.png)
 
-5. `Day13_05_Authorized_Keys_File_Created.png`
-   - Created the `authorized_keys` file and added the public key.
+![Negotiated cryptographic algorithms supported during key exchange](../screenshots/day13/Day13_17_SSH_Key_Exchange_Algorithms.png)
 
-6. `Day13_06_SSH_Permissions_Configured.png`
-   - Applied secure permissions to the `.ssh` directory and `authorized_keys` file.
+![Elliptic Curve Diffie-Hellman (ECDH) Key Exchange Initialization message](../screenshots/day13/Day13_18_ECDH_Key_Exchange_Init.png)
 
-7. `Day13_07_SSH_Service_Restarted.png`
-   - Restarted the OpenSSH service and verified it was running correctly.
+![Server's ECDH Key Exchange Reply containing its ephemeral public key](../screenshots/day13/Day13_19_ECDH_Key_Exchange_Reply.png)
 
-8. `Day13_08_SSH_Key_Login_Test.png`
-   - Successfully logged into the Ubuntu server using SSH key authentication.
+![ECDH Key Exchange Reply in detail, including server host key and signature](../screenshots/day13/Day13_20_ECDH_Key_Exchange_Reply_2.png)
 
-9. `Day13_09_SSH_Key_Authentication_Verified.png`
-   - Verified key-based authentication by executing a test command over SSH.
+![SSH New Keys packet, marking the switch to negotiated encryption keys](../screenshots/day13/Day13_21_SSH_New_Keys_Packet.png)
 
----
-
-### Wireshark Analysis
-
-10. `Day13_10_Wireshark_Capture_Started.png`
-    - Began capturing network traffic before initiating the SSH connection.
-
-11. `Day13_11_Wireshark_Capture_Before_Filter.png`
-    - Displayed the full packet capture before applying any display filters.
-
-12. `Day13_12_SSH_Filter_Applied.png`
-    - Applied the `ssh` display filter to isolate SSH traffic.
-
-13. `Day13_13_SSH_Filter_Applied_2.png`
-    - Continued viewing filtered SSH packets.
-
-14. `Day13_14_SSH_Filter_Applied_3.png`
-    - Displayed the complete filtered SSH communication.
-
-15. `Day13_15_SSH_Protocol_Version_Exchange.png`
-    - Examined the SSH protocol version exchange between the client and server.
-
-16. `Day13_16_SSH_Key_Exchange_Init.png`
-    - Captured the SSH Key Exchange Initialization packet.
-
-17. `Day13_17_SSH_Key_Exchange_Algorithms.png`
-    - Viewed the negotiated cryptographic algorithms supported during key exchange.
-
-18. `Day13_18_ECDH_Key_Exchange_Init.png`
-    - Examined the Elliptic Curve Diffie-Hellman (ECDH) Key Exchange Initialization message.
-
-19. `Day13_19_ECDH_Key_Exchange_Reply.png`
-    - Captured the server's ECDH Key Exchange Reply containing its ephemeral public key.
-
-20. `Day13_20_ECDH_Key_Exchange_Reply_2.png`
-    - Examined the ECDH Key Exchange Reply in greater detail, including the server host key, signature, and transition to encrypted communication.
-
-21. `Day13_21_SSH_New_Keys_Packet.png`
-    - Captured the SSH **New Keys** packet, indicating both client and server switched to the newly negotiated encryption keys.
-
-22. `Day13_22_SSH_Encrypted_SSH_Traffic.png`
-    - Observed that all subsequent SSH packets were fully encrypted and unreadable in Wireshark.
+![All subsequent SSH packets fully encrypted and unreadable in Wireshark](../screenshots/day13/Day13_22_SSH_Encrypted_SSH_Traffic.png)
 
 ---
 
