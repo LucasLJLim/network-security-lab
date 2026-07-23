@@ -46,6 +46,8 @@ UTM displayed an architecture compatibility warning:
 
 > The selected boot image contains the word "amd64" but the guest architecture is ARM64 (aarch64).
 
+![UTM architecture compatibility warning for the amd64 ISO](../screenshots/day4/day4-ubuntu-arm64-compatibility-error.png)
+
 ### Cause
 
 The MacBook uses Apple Silicon (ARM architecture).
@@ -74,10 +76,12 @@ Created a new Linux VM in UTM with:
 
 Configured:
 
-* Username: Lucas
+* Username: lucas
 * Hostname: ubuntu-server
 
 Completed installation successfully.
+
+![Ubuntu Server installation complete](../screenshots/day4/day4-ubuntu-installation-complete.png)
 
 ---
 
@@ -122,6 +126,8 @@ enp0s1
 ```
 
 Confirmed DHCP network connectivity.
+
+![Network configuration verified on the Ubuntu VM](../screenshots/day4/day4-ubuntu-network-verification.png)
 
 ---
 
@@ -195,6 +201,8 @@ Do **NOT**:
 * Use hard power-offs unnecessarily
 
 Using proper shutdown procedures reduces the risk of boot failures and filesystem corruption.
+
+![Ubuntu VM safely powered off](../screenshots/day4/day4-ubuntu-vm-powered-off.png)
 
 ---
 

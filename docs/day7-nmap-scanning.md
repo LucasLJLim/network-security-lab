@@ -47,6 +47,8 @@ The active network interface (`enp0s1`) was assigned:
 
 This IP address was used as the target for all Nmap scans.
 
+![Ubuntu target IP address](../screenshots/day7/day7-01-ubuntu-ip-address.png)
+
 ---
 
 ## Connectivity Test
@@ -60,6 +62,8 @@ ping 192.168.64.4
 ```
 
 Successful replies confirmed that the Windows VM could communicate with the Ubuntu Server over the virtual network.
+
+![Ping from Windows to Ubuntu](../screenshots/day7/day7-02-windows-ping-ubuntu.png)
 
 ---
 
@@ -77,6 +81,8 @@ The scan identified which ports were open and available on the Ubuntu Server.
 
 Open ports indicate services that are accepting network connections.
 
+![Basic Nmap scan results](../screenshots/day7/day7-03-basic-nmap-scan.png)
+
 ---
 
 ## Service Version Detection
@@ -90,6 +96,8 @@ nmap -sV 192.168.64.4
 The `-sV` option probes open ports to identify the application and service versions running on the target.
 
 This provides more detailed information than a basic port scan and is commonly used during reconnaissance.
+
+![Service version detection scan](../screenshots/day7/day7-04-service-version-scan.png)
 
 ---
 
@@ -107,6 +115,8 @@ This scan required Command Prompt to be run with Administrator privileges.
 
 Nmap successfully attempted to fingerprint the target operating system.
 
+![Operating system detection scan](../screenshots/day7/day7-05-os-detection-scan.png)
+
 ---
 
 ## SSH Port Scan
@@ -122,6 +132,8 @@ This scan targeted only TCP port 22.
 Port 22 is the default port used by Secure Shell (SSH).
 
 The scan determined whether the SSH service was available on the Ubuntu Server.
+
+![Targeted SSH port scan](../screenshots/day7/day7-06-ssh-port-scan.png)
 
 ---
 

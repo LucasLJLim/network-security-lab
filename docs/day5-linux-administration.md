@@ -19,6 +19,8 @@ sudo apt upgrade -y
 
 The update completed successfully and confirmed that the system could communicate with Ubuntu repositories over the network.
 
+![System package update completed](../screenshots/day5/day5-01-system-update.png)
+
 ---
 
 ## Directory Management
@@ -43,6 +45,8 @@ ls
 ```
 
 This demonstrated the ability to create and navigate directories within the Linux filesystem.
+
+![Lab directory structure created](../screenshots/day5/day5-02-lab-directories.png)
 
 ---
 
@@ -71,6 +75,10 @@ find .
 
 These activities reinforced basic Linux file handling skills.
 
+![Files created](../screenshots/day5/day5-03-files-created.png)
+
+![File copy, move and delete operations](../screenshots/day5/day5-04-file-operations.png)
+
 ---
 
 ## User Management
@@ -90,6 +98,8 @@ cat /etc/passwd | grep analyst
 ```
 
 The account was successfully created and added to the system.
+
+![New user account created](../screenshots/day5/day5-05-user-created.png)
 
 ---
 
@@ -123,6 +133,10 @@ ls -ld notes
 
 These exercises demonstrated how Linux controls access to files and directories through permissions and ownership.
 
+![File permissions modified with chmod](../screenshots/day5/day5-06-permissions.png)
+
+![File ownership changed with chown](../screenshots/day5/day5-07-ownership.png)
+
 ---
 
 ## Networking
@@ -145,6 +159,8 @@ ping google.com
 
 The Ubuntu VM successfully obtained an IP address through DHCP and was able to communicate with external hosts, confirming network functionality.
 
+![Network configuration inspected](../screenshots/day5/day5-08-networking.png)
+
 ---
 
 ## Tools Installed
@@ -162,6 +178,8 @@ ifconfig
 ```
 
 This provided additional networking utilities commonly used in Linux administration.
+
+![Networking tools installed](../screenshots/day5/day5-09-net-tools.png)
 
 ---
 
@@ -193,3 +211,6 @@ Achievements included:
 * Practicing safe Linux administration procedures
 
 The Ubuntu Server VM is now ready for more advanced Linux, networking, and cybersecurity lab activities.
+
+![Lab tasks completed](../screenshots/day5/day5-10-completed.png)
+

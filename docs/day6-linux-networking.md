@@ -30,6 +30,8 @@ The Ubuntu Server VM was assigned the following IPv4 address through DHCP:
 
 The interface status was confirmed to be **UP**, indicating that the virtual machine was successfully connected to the network.
 
+![Network interface and IP address](../screenshots/day6/day6-01-ip-address.png)
+
 ---
 
 ## Routing
@@ -49,6 +51,8 @@ default via 192.168.64.1 dev enp0s1
 ```
 
 This confirmed that outbound traffic is routed through the gateway at **192.168.64.1** using the **enp0s1** network interface.
+
+![Routing table](../screenshots/day6/day6-02-routing-table.png)
 
 ---
 
@@ -74,6 +78,8 @@ The ping test was stopped using:
 Ctrl + C
 ```
 
+![Connectivity test with ping](../screenshots/day6/day6-03-ping-google.png)
+
 ---
 
 ## DNS Resolution
@@ -94,6 +100,8 @@ nslookup google.com
 
 The command successfully resolved **google.com** into its corresponding IP addresses, confirming that DNS services were functioning correctly.
 
+![DNS lookup result](../screenshots/day6/day6-04-dns-lookup.png)
+
 ---
 
 ## Open Ports
@@ -107,6 +115,8 @@ ss -tuln
 The output displayed active TCP and UDP sockets along with the services currently listening for incoming connections.
 
 This command is commonly used by system administrators and cybersecurity professionals to identify exposed services and verify server configurations.
+
+![Listening ports on the server](../screenshots/day6/day6-05-open-ports.png)
 
 ---
 
@@ -127,6 +137,8 @@ active (running)
 ```
 
 This allows secure remote management of the Ubuntu Server.
+
+![SSH service status](../screenshots/day6/day6-06-ssh-status.png)
 
 ---
 
@@ -153,6 +165,8 @@ These commands displayed:
 
 This information is useful for understanding user permissions and privilege management within Linux.
 
+![User and group information](../screenshots/day6/day6-07-user-info.png)
+
 ---
 
 ## Running Processes
@@ -171,6 +185,8 @@ This command displayed currently executing processes, including:
 * Resource usage
 
 Process monitoring is an important skill for Linux administration and cybersecurity investigations.
+
+![Running processes](../screenshots/day6/day6-08-processes.png)
 
 ---
 
@@ -195,6 +211,8 @@ traceroute google.com
 ```
 
 These tools provide alternative methods for examining network interfaces and tracing network paths between systems.
+
+![Networking tools installed](../screenshots/day6/day6-09-network-tools.png)
 
 ---
 
