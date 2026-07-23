@@ -60,6 +60,8 @@ A note on the domain name: `lucaslab.test` uses the `.test` top-level domain, wh
 
 Signed in to the Azure Portal on a free trial with US$200 of credit, then created the VM through Virtual machines and Create.
 
+![Azure Portal home showing the free trial credit](../screenshots/day14/Day14_01_Azure_Portal_Trial_Credit.png)
+
 Final configuration:
 
 - Resource group: `HomeLab-RG` (new)
@@ -74,9 +76,17 @@ Final configuration:
 - Public IP: `DC01-ip`
 - Inbound port: RDP (TCP 3389)
 
+![VM Basics tab configured with DC01, Australia East, Windows Server 2025](../screenshots/day14/Day14_03_VM_Basics_Configured.png)
+
+![VM Networking tab with virtual network, subnet, public IP and RDP](../screenshots/day14/Day14_04_VM_Networking.png)
+
 To keep the trial credit under control, auto-shutdown was enabled at 23:00 AEST, the OS disk was left as Standard SSD rather than Premium, and the public IP and NIC were set to delete with the VM. Every resource was tagged consistently with `Environment=HomeLab`, `Role=DomainController`, and `Project=ActiveDirectoryLab`. Because this is Windows Server 2025 Azure Edition, hotpatching was left enabled with Azure-orchestrated patching, which lets many security updates apply without a reboot.
 
 The deployment completed successfully on 20 July 2026.
+
+![Deployment complete](../screenshots/day14/Day14_07_Deployment_Complete.png)
+
+![DC01 overview showing Running status and tags](../screenshots/day14/Day14_08_VM_Overview_Running.png)
 
 ### Problems encountered
 
@@ -84,7 +94,13 @@ Two issues came up during provisioning.
 
 First, the initial attempt used an Ubuntu Server image in the East US region at size Standard_D2s_v3. Azure rejected that size with `NotAvailableForSubscription`, meaning the trial subscription had no quota for it in that region. Rather than request a quota increase, I switched the region to Australia East, which is also lower latency from Sydney, and changed the image to Windows Server 2025. I then chose a B-series size that was available and stepped it down from Standard_B2s_v2 to Standard_B2ls_v2 to reduce the hourly cost and preserve trial credit.
 
+![VM size unavailable error in East US](../screenshots/day14/Day14_02_VM_Size_Unavailable_Error.png)
+
 Second, at Review and create the deployment failed validation with `SecurityRuleParametersMissing`. I had added a custom inbound rule named `Allow-RDP-MyIP` to restrict RDP to my own address, but had not filled in the source, so the rule had no `SourceAddressPrefix`. I removed the incomplete rule to let the VM deploy, then re-created it correctly against the running VM. That fix is covered in Part 2.
+
+![Validation failed with SecurityRuleParametersMissing](../screenshots/day14/Day14_05_Validation_Failed_NSG.png)
+
+![Successful review and create summary](../screenshots/day14/Day14_06_Review_And_Create.png)
 
 ---
 
@@ -94,11 +110,15 @@ Second, at Review and create the deployment failed validation with `SecurityRule
 
 Before connecting, I changed the network interface's private IP allocation from Dynamic to Static, fixing it at `172.16.0.4`. A domain controller needs a stable address because clients locate the domain and its DNS through that IP, and a lease change could break name resolution. In Azure this is set on the NIC in the portal rather than inside Windows, so the guest keeps receiving its address from Azure.
 
+![Setting the private IP allocation to Static 172.16.0.4](../screenshots/day14/Day14_09_Static_Private_IP.png)
+
 ### First connection failed
 
 The VM's public IP was `4.196.156.147`. I downloaded the `.rdp` file from the **Connect** blade and opened it in Microsoft Remote Desktop on the Mac, but the first attempt failed with error `0x204` (the client could not reach the host).
 
 The cause was network security rules. After removing the incomplete `Allow-RDP-MyIP` rule during creation, the VM had deployed with no inbound rule permitting RDP, so Azure's default deny blocked the connection.
+
+![RDP connection failed with error 0x204](../screenshots/day14/Day14_10_RDP_Connection_Failed.png)
 
 ### Lock RDP to my own IP, then connect
 
@@ -112,7 +132,13 @@ I looked up my home public IP, then added an inbound rule to the VM's network se
 
 This is the security-conscious version of the rule that failed validation earlier. RDP is reachable only from my location rather than the whole internet, which removes the VM from constant internet-wide brute-force attempts. The tradeoff is that the rule needs updating if my home IP changes.
 
+![NSG inbound rule Allow-RDP-MyIP restricting RDP to a single source IP](../screenshots/day14/Day14_11_NSG_RDP_Rule_Added.png)
+
 With the rule in place I reconnected, completed the Windows first-login prompts, and reached the desktop with Server Manager open. At this point Server Manager showed a single role (File and Storage Services), confirming the base server was ready for the AD DS role to be added.
+
+![Windows Server first login over RDP](../screenshots/day14/Day14_12_Windows_First_Login.png)
+
+![Server Manager before AD DS, showing a single role](../screenshots/day14/Day14_13_Server_Manager_Ready.png)
 
 ---
 
@@ -135,7 +161,7 @@ After the role installed, opened the promotion wizard from the Server Manager no
 
 Selected **Add a new forest** and set the root domain name to `lucaslab.test`. This is the option that creates a brand new directory rather than joining an existing one.
 
-![Deployment Configuration: new forest, root domain lucaslab.test](../screenshots/day14/Day14_07_ADDS_Deployment_Configuration.png)
+![Deployment Configuration: new forest, root domain lucaslab.test](../screenshots/day14/Day14_14_ADDS_Deployment_Configuration.png)
 
 ### Domain controller options
 
@@ -148,19 +174,19 @@ Selected **Add a new forest** and set the root domain name to `lucaslab.test`. T
 
 The DSRM password is a standalone recovery password used to boot the DC into a special repair mode. It is separate from the domain administrator password and is easy to forget, so it is worth storing safely.
 
-![Domain Controller Options: 2025 functional level, DNS and GC enabled, DSRM password set](../screenshots/day14/Day14_08_Domain_Controller_Options.png)
+![Domain Controller Options: 2025 functional level, DNS and GC enabled, DSRM password set](../screenshots/day14/Day14_15_Domain_Controller_Options.png)
 
 ### NetBIOS name
 
 The wizard derived the NetBIOS domain name `LUCASLAB` from the root domain and left it unchanged.
 
-![Additional Options: NetBIOS domain name LUCASLAB](../screenshots/day14/Day14_09_NetBIOS_Domain_Name.png)
+![Additional Options: NetBIOS domain name LUCASLAB](../screenshots/day14/Day14_16_NetBIOS_Domain_Name.png)
 
 ### Prerequisites check
 
 The check passed. It raised the expected warning that a DNS delegation could not be created, which is normal when standing up a brand new forest with no parent DNS zone above it and needs no action in a lab. The check also recommended a static IP address. In Azure this is handled at the network interface in the portal rather than inside the guest OS, so it should not be set manually inside Windows.
 
-![Prerequisites Check passed, with the expected DNS delegation warning](../screenshots/day14/Day14_10_Prerequisites_Check.png)
+![Prerequisites Check passed, with the expected DNS delegation warning](../screenshots/day14/Day14_17_Prerequisites_Check.png)
 
 Clicking **Install** promoted the server and rebooted it automatically. After reconnecting over RDP, the login was now against the `LUCASLAB` domain.
 
@@ -170,11 +196,11 @@ Clicking **Install** promoted the server and rebooted it automatically. After re
 
 After promotion, Server Manager showed three roles: AD DS, DNS, and File and Storage Services. DNS appearing here confirms it was installed and integrated during promotion.
 
-![Server Manager showing AD DS and DNS roles installed](../screenshots/day14/Day14_11_ADDS_and_DNS_Installed.png)
+![Server Manager showing AD DS and DNS roles installed](../screenshots/day14/Day14_18_ADDS_DNS_Installed.png)
 
 Opened **Active Directory Users and Computers** from Tools and confirmed `DC01` sitting in the **Domain Controllers** container, listed as a Global Catalog server in the default site.
 
-![ADUC showing DC01 in the Domain Controllers container as a GC](../screenshots/day14/Day14_12_ADUC_DC01_Verified.png)
+![ADUC showing DC01 in the Domain Controllers container as a GC](../screenshots/day14/Day14_19_ADUC_DC01_Verified.png)
 
 ---
 
@@ -195,7 +221,7 @@ lucaslab.test
 
 Nesting OUs this way mirrors how a real domain is organised. It keeps departments separate, gives a clean place to apply Group Policy later, and makes delegating control over a single department straightforward.
 
-![ADUC showing the LucasLab OU with nested IT, HR, Sales, Groups, Computers, and Servers OUs](../screenshots/day14/Day14_13_Organizational_Units_Created.png)
+![ADUC showing the LucasLab OU with nested IT, HR, Sales, Groups, Computers, and Servers OUs](../screenshots/day14/Day14_20_Organizational_Units.png)
 
 ---
 
@@ -209,11 +235,11 @@ Created one user in each department OU.
 | Alice Chen | HR |
 | Bob Wilson | Sales |
 
-![John Smith created in the IT OU](../screenshots/day14/Day14_14_Domain_Users_Created_1.png)
+![John Smith created in the IT OU](../screenshots/day14/Day14_21_Domain_User_IT.png)
 
-![Alice Chen created in the HR OU](../screenshots/day14/Day14_14_Domain_Users_Created_2.png)
+![Alice Chen created in the HR OU](../screenshots/day14/Day14_22_Domain_User_HR.png)
 
-![Bob Wilson created in the Sales OU](../screenshots/day14/Day14_14_Domain_Users_Created_3.png)
+![Bob Wilson created in the Sales OU](../screenshots/day14/Day14_23_Domain_User_Sales.png)
 
 ---
 
@@ -227,7 +253,7 @@ Created three security groups inside the **Groups** OU:
 
 The `GG_` prefix marks these as global groups. Naming groups by role and keeping them in their own OU follows the common approach of grouping users by function first, then granting those groups access to resources. It scales far better than assigning permissions to individual users.
 
-![The three GG_ security groups in the Groups OU](../screenshots/day14/Day14_15_Security_Groups_Created.png)
+![The three GG_ security groups in the Groups OU](../screenshots/day14/Day14_24_Security_Groups.png)
 
 ---
 
@@ -243,7 +269,7 @@ Added each user to the group for their department:
 
 Verified membership by opening the **Members** tab of `GG_Sales_Staff`, which showed Bob Wilson listed with his source OU path `lucaslab.test/LucasLab/Sales`.
 
-![GG_Sales_Staff membership showing Bob Wilson](../screenshots/day14/Day14_16_Group_Membership_Verified.png)
+![GG_Sales_Staff membership showing Bob Wilson](../screenshots/day14/Day14_25_Group_Membership.png)
 
 ---
 
