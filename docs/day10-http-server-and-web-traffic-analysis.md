@@ -8,12 +8,12 @@ The objective of this lab was to learn how to secure a Linux server using UFW (U
 
 ## Environment
 
-- Ubuntu Server VM
-- Windows 11 VM
-- Oracle VirtualBox
-- UFW (Uncomplicated Firewall)
-- Python 3 HTTP Server
-- Nmap
+- Host: MacBook (Apple Silicon), macOS
+- Hypervisor: UTM
+- Server VM: Ubuntu Server (target)
+- Client VM: Windows 11 ARM64
+- Network: UTM shared network, `192.168.64.0/24`
+- Tools: UFW (Uncomplicated Firewall), Python 3 HTTP Server, Nmap
 
 ---
 
@@ -30,6 +30,8 @@ sudo ufw status
 ```
 
 Initially, the firewall was inactive.
+
+![UFW status showing inactive](../screenshots/day10/01_ufw_inactive.png)
 
 ---
 
@@ -52,6 +54,8 @@ The firewall became active with the default policy:
 - Deny incoming connections
 - Allow outgoing connections
 
+![UFW enabled](../screenshots/day10/02_ufw_enabled.png)
+
 ---
 
 ### 3. Allowed SSH Access
@@ -70,6 +74,8 @@ Verified the rule using:
 sudo ufw status numbered
 ```
 
+![SSH allow rule added](../screenshots/day10/03_allow_ssh.png)
+
 ---
 
 ### 4. Allowed HTTP Traffic
@@ -83,6 +89,8 @@ sudo ufw allow 8000/tcp
 ```
 
 Verified that the rule was successfully added.
+
+![HTTP rule added for port 8000](../screenshots/day10/04_allow_http_port8000.png)
 
 ---
 
@@ -103,6 +111,8 @@ http://192.168.64.4:8000
 ```
 
 The webpage loaded successfully, confirming that the firewall allowed HTTP traffic on port 8000.
+
+![Web server reachable from the client](../screenshots/day10/05_http_server_accessible.png)
 
 ---
 
@@ -132,6 +142,8 @@ Service detection also identified:
 - OpenSSH
 - Python SimpleHTTPServer
 
+![Nmap scan after firewall rules applied](../screenshots/day10/06_nmap_scan_after_firewall.png)
+
 ---
 
 ### 7. Reviewed Firewall Rules
@@ -145,6 +157,8 @@ sudo ufw status numbered
 ```
 
 Confirmed that only the required services were allowed.
+
+![Active UFW rule set](../screenshots/day10/07_ufw_rules.png)
 
 ---
 
@@ -162,6 +176,8 @@ Restarted the HTTP server and attempted to access the webpage from Windows.
 
 The connection failed because the firewall blocked incoming traffic on port 8000, demonstrating that the service can be running while remaining inaccessible due to firewall policy.
 
+![HTTP blocked after removing the rule](../screenshots/day10/08_http_blocked.png)
+
 ---
 
 ### 9. Restored HTTP Access
@@ -175,6 +191,8 @@ sudo ufw allow 8000/tcp
 ```
 
 Refreshed the webpage from Windows and confirmed that access was restored.
+
+![HTTP access restored](../screenshots/day10/09_http_restored.png)
 
 ---
 
@@ -200,28 +218,6 @@ Refreshed the webpage from Windows and confirmed that access was restored.
 - Nmap scanning
 - Cross-machine connectivity testing
 - Basic Linux administration
-
----
-
-## Screenshots
-
-See:
-
-```
-screenshots/day10/
-```
-
-for screenshots demonstrating:
-
-- UFW inactive
-- UFW enabled
-- SSH rule added
-- HTTP rule added
-- Web server accessible
-- Nmap scan
-- Firewall rules
-- HTTP blocked
-- HTTP restored
 
 ---
 

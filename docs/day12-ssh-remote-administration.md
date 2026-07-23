@@ -56,6 +56,8 @@ Result:
 - SSH service was active.
 - Server listening on TCP Port 22.
 
+![SSH service running on Ubuntu](../screenshots/day12/day12-02-ubuntu-ssh-service-running.png)
+
 ---
 
 # Part 2 – Verify SSH with Nmap
@@ -74,6 +76,8 @@ Result:
 
 This confirmed the SSH service was accessible across the network.
 
+![Nmap confirming port 22 open](../screenshots/day12/day12-01-nmap-ssh-port-scan.png)
+
 ---
 
 # Part 3 – Connect using SSH
@@ -91,6 +95,12 @@ During the first connection:
 - The server was added to the known_hosts file.
 
 After entering the Ubuntu password, a secure shell session was established.
+
+![First connection host fingerprint prompt](../screenshots/day12/day12-03-first-ssh-connection-authentication.png)
+
+![Successful SSH login](../screenshots/day12/day12-04-successful-ssh-login-1.png)
+
+![Remote session established](../screenshots/day12/day12-05-successful-ssh-login-2.png)
 
 ---
 
@@ -131,6 +141,10 @@ SSH-2.0-OpenSSH_10.2p1 Ubuntu
 
 This confirmed both systems agreed on SSH Version 2.
 
+![SSH protocol version exchange](../screenshots/day12/day12-06-ssh-protocol-version-exchange.png)
+
+![Protocol version exchange, continued](../screenshots/day12/day12-07-ssh-protocol-version-exchange-2.png)
+
 ---
 
 ## Key Exchange
@@ -146,6 +160,10 @@ During this process:
 - Client and server negotiated supported encryption algorithms.
 - A shared secret session key was generated.
 - The encryption keys were never transmitted across the network.
+
+![SSH client key exchange init](../screenshots/day12/day12-08-ssh-client-key-exchange-init.png)
+
+![Elliptic curve Diffie-Hellman key exchange](../screenshots/day12/day12-09-ssh-ecdh-key-exchange.png)
 
 ---
 
@@ -167,6 +185,12 @@ Only metadata such as:
 remained visible.
 
 The commands, passwords, and server responses were fully encrypted.
+
+![Encrypted session begins](../screenshots/day12/day12-10-ssh-encrypted-session-begins.png)
+
+![Encrypted SSH traffic in Wireshark](../screenshots/day12/day12-11-ssh-encrypted-traffic.png)
+
+![Continued encrypted traffic](../screenshots/day12/day12-12-continued-ssh-encrypted-traffic.png)
 
 ---
 
@@ -243,17 +267,3 @@ This demonstrated how SSH provides confidentiality, integrity, and secure remote
 
 ---
 
-# Screenshots
-
-1. 01 - Nmap SSH Port Scan
-2. 02 - Ubuntu SSH Service Running
-3. 03 - First SSH Connection Authentication
-4. 04 - Successful SSH Login 1
-5. 05 - Successful SSH Login 2
-6. 06 - SSH Protocol Version Exchange
-7. 07 - SSH Protocol Version Exchange 2
-8. 08 - SSH Client Key Exchange Init
-9. 09 - SSH Elliptic Curve Diffie-Hellman Key Exchange
-10. 10 - SSH Encrypted Session Begins
-11. 11 - SSH Encrypted Traffic
-12. 12 - Continued SSH Encrypted Traffic
