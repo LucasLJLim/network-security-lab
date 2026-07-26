@@ -27,13 +27,13 @@ The goals were to:
 - VM name: `DC01`
 - Size: Standard_B2ls_v2 (2 vCPU, 4 GiB RAM, about US$45/month)
 - OS disk: 127 GiB Premium SSD
-- Administrator username: `lucasadmin`
+- Administrator username: `<redacted>`
 - Roles added during the lab: Active Directory Domain Services, DNS
 
 **Networking**
 - Virtual network: `vnet-australiaeast-1`, subnet `172.16.0.0/24`
 - Private IP: `172.16.0.4` (static)
-- Public IP: `DC01-ip` (`4.196.156.147`)
+- Public IP: `DC01-ip` (`x.x.x.x`)
 - Inbound: RDP (TCP 3389), restricted to my own public IP via the NSG
 
 **Domain**
@@ -70,7 +70,7 @@ Final configuration:
 - Image: Windows Server 2025 Datacenter: Azure Edition, x64, Gen2
 - Security type: Trusted launch
 - Size: Standard_B2ls_v2 (2 vCPU, 4 GiB, about US$45/month)
-- Administrator account: username `lucasadmin` with a password (RDP uses password authentication rather than SSH keys)
+- Administrator account: username `<redacted>` with a password (RDP uses password authentication rather than SSH keys)
 - OS disk: 127 GiB Standard SSD, platform-managed key
 - Virtual network: `vnet-australiaeast-1` with subnet `172.16.0.0/24`
 - Public IP: `DC01-ip`
@@ -114,7 +114,7 @@ Before connecting, I changed the network interface's private IP allocation from 
 
 ### First connection failed
 
-The VM's public IP was `4.196.156.147`. I downloaded the `.rdp` file from the **Connect** blade and opened it in Microsoft Remote Desktop on the Mac, but the first attempt failed with error `0x204` (the client could not reach the host).
+The VM's public IP was `x.x.x.x`. I downloaded the `.rdp` file from the **Connect** blade and opened it in Microsoft Remote Desktop on the Mac, but the first attempt failed with error `0x204` (the client could not reach the host).
 
 The cause was network security rules. After removing the incomplete `Allow-RDP-MyIP` rule during creation, the VM had deployed with no inbound rule permitting RDP, so Azure's default deny blocked the connection.
 
