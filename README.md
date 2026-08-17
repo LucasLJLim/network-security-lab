@@ -1,6 +1,6 @@
 # Network Security Home Lab
 
-A self-directed home lab documenting hands-on work in networking, Linux administration, traffic analysis, and Windows Server infrastructure. Each day is a standalone write-up covering the objective, the steps taken, what went wrong, and what I learned.
+A self-directed home lab documenting hands-on work in networking, Linux administration, traffic analysis, Windows Server infrastructure, and security auditing. Each day is a standalone write-up covering the objective, the steps taken, what went wrong, and what I learned.
 
 The lab began on an Apple Silicon Mac running virtual machines in UTM, and later extended into Microsoft Azure to build an Active Directory environment that was impractical to virtualise locally.
 
@@ -21,7 +21,7 @@ The lab began on an Apple Silicon Mac running virtual machines in UTM, and later
 - Microsoft Azure: Windows Server 2025 domain controller, administered over RDP
 
 **Tools used across the lab**
-Wireshark, Nmap, UFW, OpenSSH, Python HTTP server, Server Manager, Active Directory Users and Computers
+Wireshark, Nmap, UFW, OpenSSH, Python HTTP server, Server Manager, Active Directory Users and Computers, Group Policy Management, Event Viewer, PowerShell
 
 ---
 
@@ -43,6 +43,7 @@ Wireshark, Nmap, UFW, OpenSSH, Python HTTP server, Server Manager, Active Direct
 | [12](docs/day12-ssh-remote-administration.md) | Secure Remote Access with SSH | Encrypted remote administration |
 | [13](docs/day13-ssh-key-authentication.md) | SSH Key-Based Authentication | Public-key cryptography |
 | [14](docs/day14-active-directory-setup.md) | Active Directory on Windows Server (Azure) | Domain controller, DNS, OUs, groups |
+| [15](docs/day15-group-policy-and-auditing.md) | Group Policy, Password Enforcement and Security Auditing | GPOs, audit policy, brute-force detection |
 
 ---
 
@@ -52,19 +53,22 @@ Wireshark, Nmap, UFW, OpenSSH, Python HTTP server, Server Manager, Active Direct
 Packet capture and protocol analysis with Wireshark, port scanning and service detection with Nmap, IP addressing and routing, DNS resolution, TCP and TLS session behaviour
 
 **Security**
-Firewall configuration and rule design, encrypted versus cleartext protocol comparison, certificate inspection, SSH key-based authentication, network security group rules and least-privilege access
+Firewall configuration and rule design, encrypted versus cleartext protocol comparison, certificate inspection, SSH key-based authentication, network security group rules and least-privilege access, domain password and account lockout policy
+
+**Detection and monitoring**
+Windows advanced audit policy configuration, Security event log analysis with Event Viewer and PowerShell, interpretation of authentication event IDs (4625, 4740, 4767, 4771, 4776), controlled attack simulation and detection, distinguishing machine-initiated from human-initiated events in an audit trail
 
 **Linux administration**
 User and permission management, service management, network configuration, command-line operations, package management
 
 **Windows and infrastructure**
-Windows Server role installation, Active Directory Domain Services, domain controller promotion, DNS integration, organizational unit design, users and security groups
+Windows Server role installation, Active Directory Domain Services, domain controller promotion, DNS integration, organizational unit design, users and security groups, Group Policy Object creation and linking, verifying effective policy with `gpresult`, `net accounts` and `auditpol`
 
 **Cloud**
 Azure VM provisioning, virtual networks and subnets, network security groups, remote administration over RDP, cost management with sizing and auto-shutdown
 
 **Practice**
-Technical documentation, troubleshooting and root-cause analysis, reproducible step-by-step write-ups
+Technical documentation, troubleshooting and root-cause analysis, reproducible step-by-step write-ups, redaction of sensitive infrastructure detail in public documentation
 
 ---
 
@@ -77,6 +81,7 @@ Real problems encountered and resolved, documented in the relevant day:
 - **HTTP 304 versus 200** — traced why a cached response looked like a missing request during traffic capture (Day 9)
 - **Azure VM size unavailable** — hit a subscription quota limit and resolved it by changing region and instance size (Day 14)
 - **RDP lockout (error 0x204)** — locked myself out by tightening network security group rules, then diagnosed and corrected the rule (Day 14)
+- **Kerberos failures logged as 4771, not 4625** — a detection rule watching only for generic logon failures would have missed the simulated brute-force entirely (Day 15)
 
 ---
 
